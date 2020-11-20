@@ -10,3 +10,9 @@ check lib version
 ```
 $ pip freeze
 ```
+
+### how to import Database
+```
+dowload XAMPP https://www.apachefriends.org/download.html
+import test.sql to phpMyAdmin
+```
