@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,admin templates, admin template, admin dashboard, free tailwind templates, tailwind example">
+    <!-- Css -->
+    <link rel="stylesheet" href="./static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap" rel="stylesheet">
+    
+    <title>Home</title>
+</head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+        .font-family{
+            font-family: 'Prompt', sans-serif;
+        }
+        
+    </style>
+
+<body class="font-family">
+<!--Container -->
+<div class="mx-auto bg-grey-400">
+    <!--Screen-->
+    <div class="min-h-screen flex flex-col">
+        <!--Header Section Starts Here-->
+        <header class="bg-nav">
+            <div class="flex justify-between">
+                <div class="p-1 mx-3 inline-flex items-center">
+                    <i class="fas fa-bars" onclick="sidebarToggle()"></i>
+                    <h1 class="text-white p-2">ระบบบริหารจัดการค่าน้ำ ค่าไฟ หอพักกมลวรรณ</h1>
+                </div>
+                <div class="p-1 flex flex-row items-center">
+                    
+
+
+                    <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png" alt="">
+                    <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block">{{name_user}}</a>
+                    <div id="ProfileDropDown" class="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r">
+                        <ul class="list-reset">
+                          <li><a href="{{url_for('login')}}" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--/Header-->
+
+        <div class="flex flex-1 font-family ">
+            <!--Sidebar-->
+            <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
+
+                <ul class="list-reset flex flex-col">
+                    <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
+                        <a href="{{url_for('start_index')}}"
+                           class="hover:font-normal text-sm text-nav-item no-underline">
+                            <i class="fas fa-tachometer-alt float-left mx-2"></i>
+                            หน้าหลัก
+                            <span><i class="fas fa-angle-right float-right"></i></span>
+                        </a>
+                    </li>
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                        <a href="{{url_for('upload_for_ocr')}}"
+                           class="hover:font-normal text-sm text-nav-item no-underline">
+                            <i class="fab fa-wpforms float-left mx-2"></i>
+                            เก็บข้อมูลมิเตอร์
+                            <span><i class="fa fa-angle-right float-right"></i></span>
+                        </a>
+                    </li>
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                        <a href="{{url_for('queryforcalculate')}}"
+                           class="hover:font-normal text-sm text-nav-item no-underline">
+                            <i class="fas fa-grip-horizontal float-left mx-2"></i>
+                            สร้างใบแจ้งหนี้
+                            <span><i class="fa fa-angle-right float-right"></i></span>
+                        </a>
+                    </li>
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                        <a href="{{url_for('qeuryforshow')}}"
+                           class="hover:font-normal text-sm text-nav-item no-underline">
+                            <i class="fas fa-table float-left mx-2"></i>
+                            สรุปค่าใช้จ่าย
+                            <span><i class="fa fa-angle-right float-right"></i></span>
+                        </a>
+                    </li>
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                        <a href="{{url_for('users')}}"
+                           class="hover:font-normal text-sm text-nav-item no-underline">
+                            <i class="fab fa-uikit float-left mx-2"></i>
+                            จัดการผู้ใช้งาน
+                            <span><i class="fa fa-angle-right float-right"></i></span>
+                        </a>
+                    </li>
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                        <a href="{{url_for('units_setting')}}"
+                           class="hover:font-normal text-sm text-nav-item no-underline">
+                           <i class="fas fa-cogs"></i></i>
+                            ตั้งค่าหน่วยบริการ
+                            <span><i class="fa fa-angle-right float-right"></i></span>
+                        </a>
+                    </li>
+                    
+                            <li class="border-t border-light-border w-full h-full px-2 py-3">
+                                <a href="{{url_for('login')}}"
+                                   class="mx-4  hover:font-normal text-sm text-nav-item no-underline">
+                                    ออกจากระบบ
+                                    <span><i class="fa fa-angle-right float-right"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </aside>
+            <!--/Sidebar-->
+            <main class="bg-white-500 flex-1 p-3 overflow-hidden">
+                <!--Grid Form-->
+
+                <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                    <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                        <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b text-center font-bold text-lg">
+                            อัตราค่าหน่วยบริการ
+                        </div>
+                        <div class="p-3 text-center">
+                            <p class='text-lg p-3'>ค่าไฟฟ้า     {{units[1]}}    บาท/หน่วย</p>
+                            <p class='text-lg p-3'>ค่าน้ำ     {{units[2]}}    บาท/หน่วย</p>
+                            <p class='text-lg p-3'>ค่าเช่าห้อง     {{units[3]}}    บาท/เดือน</p>
+                        
+                        <div>
+                            <div class="p-3">
+                                <a data-modal='unit_edit'
+                                    class="modal-trigger bg-blue-500 hover:bg-blue-700 text-white text-lg
+                         font-normal py-2 px-2 rounded">
+                                    Edit
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2 text-center">
+                <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                    <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b text-center font-bold text-lg">
+                        ห้องพัก
+                    </div>
+                    <div class="p-3">
+                        <a data-modal='add_room'
+                            class="modal-trigger bg-green-700 hover:bg-green-500 text-white  py-2 px-2 rounded right-0 text-md ">
+                            เพิ่มห้องพัก
+                        </a>
+                    </div>
+                    <div class="p-3">
+                        <table class="table-responsive w-full rounded w-full">
+                            <thead>
+                              <tr>
+                                <th class="border w-1/7 px-4 py-2">id</th>
+                                <th class="border w-1/4 px-4 py-2">ห้องพัก</th>
+                                <th class="border w-1/4 px-4 py-2">ผู้พัก</th>
+                                <th class="border w-1/4 px-4 py-2">แก้ไข</th>
+                                <th class="border w-1/4 px-4 py-2">ลบ</th>
+                                
+                              </tr>
+
+                            </thead>
+                            <tbody>
+                                {%for room in room %}
+                                        <tr>
+                                            <td>{{room.0}}</td>
+                                            <td>{{room.1}}</td>
+                                            <td>{{room.3}}</td>
+                                            
+                                            <td>
+                                                    <div class="p-3">
+                                                        <a data-modal='edit{{room.0}}' 
+                                                            class="modal-trigger bg-blue-300 hover:bg-blue-700 text-white text-xs font-normal py-2 px-2 rounded">
+                                                            Edit
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            <td>
+
+                                                    <div class="p-2">
+                                                        <a href="/delete_room/{{room.0}}" class="modal-trigger bg-red-300 hover:bg-red-700 text-white text-xs font-normal py-2 px-2 rounded" onclick="return confirm('Are You Sure For Delete?')">Delete</a>
+                                                    </div>
+                                            </td>
+                                            
+                                        </tr>
+
+                                        <div id='edit{{room.0}}' class="modal-wrapper">
+                                            <div class="overlay close-modal"></div>
+                                            <div class="modal modal-centered">
+                                                <div class="modal-content shadow-lg p-5">
+                                                    <div class="border-b p-2 pb-3 pt-0 mb-4">
+                                                       <div class="flex justify-between items-center">
+                                                            แก้ไขห้องพัก
+                                                            <span class='close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200'>
+                                                                <i class="fas fa-times text-gray-700"></i>
+                                                            </span>
+                                                       </div>
+                                                    </div>
+
+                                                    <!-- Modal content -->
+                                                    <form action="{{url_for('update_room')}}" method="POST" class="w-full">
+                                                        <div class="flex flex-wrap -mx-3 mb-6">
+                                                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="fullname">
+                                                                    ชื่อห้อง
+                                                                </label>
+                                                                <input
+                                                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white-500"
+                                                                    id="fullname" name="fullname" type="text" value="{{room.1}}" required>
+                                                                
+                                                            </div>
+                                                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="id_user">
+                                                                    ผู้พัก
+                                                                </label>
+                                                                <select
+                                                                    class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                                                                    id="room" name="room">
+                                                                    {%for i in user%}
+                                                                    <option value="{{i[0]}}">{{i[1]}}</option>
+                                                                    {%endfor%}
+                                                                </select>
+                                                                
+                                                            </div>
+
+                                                            
+                                                        </div>
+
+                                                        
+                                        
+                                                        <div class="mt-5">
+                                                            <input type="submit" value="ยีนยันการแก้ไข" class='bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-4 rounded' required >
+                                                            </input>
+                                                            <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
+                                                                ปิด
+                                                            </span>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                {%endfor%}        
+                            </tbody>
+                        </table>
+                    </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+            </main>
+        </div>
+    </div>
+</div>
+<div id='unit_edit' class="modal-wrapper">
+    <div class="overlay close-modal"></div>
+    <div class="modal modal-centered">
+        <div class="modal-content shadow-lg p-5">
+            <div class="border-b p-2 pb-3 pt-0 mb-4">
+               <div class="flex justify-between items-center">
+                    แก้ไขอัตราหน่วยบริการ
+                    <span class='close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200'>
+                        <i class="fas fa-times text-gray-700"></i>
+                    </span>
+               </div>
+            </div>
+
+            <!-- Modal content -->
+            <form action="{{url_for('update_unit')}}" method="POST" class="w-full">
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class=" text-lg  block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="meter">
+                            ค่าไฟฟ้า/หน่วย
+                        </label>
+                        <input
+                            class=" appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white-500"
+                            id="meter" name="meter" type="text" placeholder="{{units[1]}}" required>
+                        
+                    </div>
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="text-lg  block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="water">
+                            ค่าน้ำ/หน่วย
+                        </label>
+                        <input 
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white-500"
+                            id="water" name="water" type="text" placeholder="{{units[2]}}" required>
+                    </div>
+
+                    <div class="w-full md:w-1/2 px-3">
+                        <label class="text-lg block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="rent_room">
+                            ค่าเช่าห้อง/เดือน
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                            id="rent_room" name="rent_room" type="text" placeholder="{{units[3]}}" required>
+                    </div>
+                </div>
+                <input type="hidden" name='id_unit' id='id_unit' value='{{units[0]}}' required></input>
+                
+
+                <div class="mt-5 flex justify-center">
+                    <input type="submit" value="ยีนยันการแก้ไข" class='bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-4 rounded' required >
+                    </input>
+                    <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
+                        ปิด
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id='add_room' class="modal-wrapper">
+    <div class="overlay close-modal"></div>
+    <div class="modal modal-centered">
+        <div class="modal-content shadow-lg p-5">
+            <div class="border-b p-2 pb-3 pt-0 mb-4">
+               <div class="flex justify-between items-center">
+                    เพิ่มห้องพัก
+                    <span class='close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200'>
+                        <i class="fas fa-times text-gray-700"></i>
+                    </span>
+               </div>
+            </div>
+
+            <!-- Modal content -->
+            <form action="{{url_for('insert_room')}}" method="POST" class="w-full">
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="room_name">
+                            ชื่อห้อง
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white-500"
+                            id="room_name" name="room_name" type="text" value="" required>
+                        
+                    </div>
+                    
+
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="users_id">
+                            ผู้พัก
+                        </label>
+                        <select
+                            class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                            id="users_id" name="users_id" >
+                            {%for i in user%}
+                            <option value="{{i[0]}}"required>{{i[1]}}</option>
+                            {%endfor%}
+                        </select>
+                        
+                    </div>
+
+                    
+                </div>
+
+                
+
+                <div class="mt-5">
+                    <input type="submit" value="เพิ่มห้องพัก" class='bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-4 rounded' required >
+                    </input>
+                    <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
+                        ปิด
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="./static/main.js"></script>
+</body>
+</html>

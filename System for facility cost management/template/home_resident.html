@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,admin templates, admin template, admin dashboard, free tailwind templates, tailwind example">
+    <!-- Css -->
+    <link rel="stylesheet" href="./static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" >
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
+    
+    <title>Home</title>
+</head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+        .font-family{
+            font-family: 'Prompt', sans-serif;
+        }
+        
+    </style>
+
+<body class="font-family">
+<!--Container -->
+<div class="mx-auto bg-grey-400">
+    <!--Screen-->
+    <div class="min-h-screen flex flex-col">
+        <!--Header Section Starts Here-->
+        <header class="bg-nav">
+            <div class="flex justify-between">
+                <div class="p-1 mx-3 inline-flex items-center">
+                    
+                    <h1 class="text-white p-2">ระบบบริหารจัดการค่าน้ำ ค่าไฟ หอพักกมลวรรณ</h1>
+                </div>
+                <div class="p-1 flex flex-row items-center">
+                    
+
+
+                    <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png" alt="">
+                    <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block">{{name_user}}</a>
+                    <div id="ProfileDropDown" class="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r">
+                        <ul class="list-reset">
+                          <li><a href="{{url_for('login')}}" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+    <main class="bg-white-500 flex-1 p-3 overflow-hidden font-family">
+      <!--Grid Form-->
+
+      <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+          <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+              <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b text-center text-lg font-bold">
+                  ใบแจ้งหนี้
+              </div>
+              <div class="p-3">
+
+                  
+              <div>
+
+<!--Grid Form-->
+
+          <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+              <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                  
+                  <div class="p-3">
+                      <table class="sm:w-full md:w-full lg:w-full text-center">
+                          <thead class="md:w-1/2 lg:w-full">
+                            <tr>
+                              <th class="border w-1/4 px-4 py-2 text-center">รายการ</th>
+                              <th class="border w-1/2 px-4 py-2 text-center">ค่าหน่วยบริการ</th>
+                              <th class="border w-1/4 px-4 py-2 text-center">ราคารวม</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                              <tr>
+                                <td class="border px-4 py-2">ค่าเช่าห้อง</td>
+                                <td class="border px-4 py-2">2500</td>
+                                <td class="border px-4 py-2">2500</td>
+                              </tr>
+                              <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">ค่าน้ำประปา</td>
+                                <td class="border px-4 py-2">({{Qdate[8]}} - {{Qdate[10]}}) * 8</td>
+                                <td class="border px-4 py-2">{{Qdate[4]}}</td>
+                              </tr>
+                              <tr>
+                                <td class="border px-4 py-2">ค่าไฟ</td>
+                                <td class="border px-4 py-2">({{Qdate[7]}} - {{Qdate[9]}}) * 6</td>
+                                <td class="border px-4 py-2">{{Qdate[5]}}</td>
+                              </tr>
+                              <tr>
+                                <td class="border-b bg-white text-black  py-2 text-lg font-bold">รวมทั้งสิ้น</td>
+                                <td class="border-b bg-white text-black  py-2"></td>
+                                <td class="border-b bg-white text-red-500  py-2 text-lg font-bold">{{Qdate[6]}} บาท</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <br>
+                      <div class="flex justify-center items-center">
+                        <span class="font-light text-black text-center">กรุณาชำระเงินผ่านบัญชีธนาคารกรุงไทย สาขาพิษณุโลก<br>
+                        ชื่อบัญชี นางสาวกมลวรรณ หยวกยง <br>
+                        เลขที่บัญชี 263-517828-4<br>
+                        เบอร์ติดต่อหอพัก 086-2819413 หรือ 089-4095538</span>    
+                    </div>
+                  </div>
+              </div>
+          </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+          <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+              <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b text-center text-lg font-bold">
+                  สรุปค่าใช้จ่ายรายเดือน ห้อง {{name_user}}
+              </div>
+              <div class="p-3">
+
+        
+                  <div>
+
+<!--Grid Form-->
+
+          <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+          <form action="{{url_for('data_room')}}" method="POST" class="w-full">
+              <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                <div class="w-full md:w-3/3 px-3 mb-6 md:mb-0">
+                  <label
+                      class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1 p-3 text-lg font-bold"
+                      for="year">
+                      ปี
+                  </label>
+                  <div class="relative">
+                      <select
+                          class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey sm:1/3"
+                          id="year" name="year">
+                          <option value="2563">2563</option>
+                          <option value="2564">2564</option>
+                          <option value="2565">2565</option>
+                          <option value="2566">2566</option>
+                          <option value="2567">2567</option>
+                          <option value="2568">2568</option>
+                          <option value="2568">2568</option>
+                          <option value="2569">2569</option>
+                          <option value="2570">2570</option>
+                      </select>
+                      <div
+                          class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
+                          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 20 20">
+                              <path
+                                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                          </svg>
+                      </div>
+                  </div>
+
+                  <div class="relative">
+                    <input type="hidden" name="room_id" value="{{Qdate[0]}}" >
+                </div>
+
+              </div>
+              <div class="flex flex-col  content-center p-2 sm:flex justify-center" >
+                <input type="submit" value="ค้นหา"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded-full justify-center">
+            </div>
+                  
+                  <div class="p-3">
+                      <table class="table-responsive w-full rounded text-center">
+                          <thead>
+                            <tr>
+                              <th class="border w-1/7 px-4 py-2">ห้อง</th>
+                              <th class="border w-1/4 px-4 py-2">เดือน</th>
+                              <th class="border w-1/4 px-4 py-2">ค่าน้ำ</th>
+                              <th class="border w-1/4 px-4 py-2">ค่าไฟ</th>
+                              <th class="border w-1/4 px-4 py-2">รวมรายเดือน</th>
+                              
+                              
+                              
+                            </tr>
+                          </thead>
+                          <tbody>
+                              {%for data in history %}
+                              <tr>
+                                  <td>{{name_room}}</td>
+                                  <td>{{data[0]}}</td>
+                                  <td>{{data[1]}}</td>
+                                  <td>{{data[2]}}</td>
+                                  <td>{{data[3]}}</td>
+                                  
+                              </tr>
+                              {%endfor%}
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+            </form>
+          </div>
+          
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+
+
+  </main>
+
+
+    
+
+
+
+</script>
+<script src="./static/main.js"></script>
+</body>
+</html>

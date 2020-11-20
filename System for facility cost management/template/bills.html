@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,admin templates, admin template, admin dashboard, free tailwind templates, tailwind example">
+    <!-- Css -->
+    <link rel="stylesheet" href="./static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" >
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
+    
+    <title>Home</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+    .font-family{
+        font-family: 'Prompt', sans-serif;
+    }
+    
+</style>
+
+<body class="font-family">
+<!--Container -->
+<div class="mx-auto bg-grey-400">
+<!--Screen-->
+<div class="min-h-screen flex flex-col">
+    <!--Header Section Starts Here-->
+    <header class="bg-nav">
+        <div class="flex justify-between">
+            <div class="p-1 mx-3 inline-flex items-center">
+                <i class="fas fa-bars" onclick="sidebarToggle()"></i>
+                <h1 class="text-white p-2">ระบบบริหารจัดการค่าน้ำ ค่าไฟ หอพักกมลวรรณ</h1>
+            </div>
+            <div class="p-1 flex flex-row items-center">
+                
+
+
+                <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png" alt="">
+                <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block">{{name_user}}</a>
+                <div id="ProfileDropDown" class="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r">
+                    <ul class="list-reset">
+                      <li><a href="{{url_for('login')}}" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--/Header-->
+
+    <div class="flex flex-1 font-family ">
+        <!--Sidebar-->
+        <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
+
+            <ul class="list-reset flex flex-col">
+                <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
+                    <a href="{{url_for('start_index')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                        <i class="fas fa-tachometer-alt float-left mx-2"></i>
+                        หน้าหลัก
+                        <span><i class="fas fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <a href="{{url_for('upload_for_ocr')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                        <i class="fab fa-wpforms float-left mx-2"></i>
+                        เก็บข้อมูลมิเตอร์
+                        <span><i class="fa fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <a href="{{url_for('queryforcalculate')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                        <i class="fas fa-grip-horizontal float-left mx-2"></i>
+                        สร้างใบแจ้งหนี้
+                        <span><i class="fa fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <a href="{{url_for('qeuryforshow')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                        <i class="fas fa-table float-left mx-2"></i>
+                        สรุปค่าใช้จ่าย
+                        <span><i class="fa fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <a href="{{url_for('users')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                        <i class="fab fa-uikit float-left mx-2"></i>
+                        จัดการผู้ใช้งาน
+                        <span><i class="fa fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <a href="{{url_for('units_setting')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                       <i class="fas fa-cogs"></i></i>
+                        ตั้งค่าหน่วยบริการ
+                        <span><i class="fa fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                
+                        <li class="border-t border-light-border w-full h-full px-2 py-3">
+                            <a href="{{url_for('login')}}"
+                               class="mx-4  hover:font-normal text-sm text-nav-item no-underline">
+                                ออกจากระบบ
+                                <span><i class="fa fa-angle-right float-right"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </aside>
+            <!--/Sidebar-->
+            <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+
+                <div class="mb-2 border-solid border-grey-light rounded border shadow-sm w-full md:w-1/2 lg:w-full">
+                    <div class="bg-gray-300 px-2 py-3 border-solid border-gray-400 border-b flex justify-center">
+                        ใบแจ้งหนี้
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="font-light text-black justify-start">หมายเลขห้อง {{room}}</span>
+                        <span class="font-light text-black justify-end">วันที่ {{dateN}}</span>
+                    </div>
+                    <div class="p-3">
+                        <table class="md:w-1/2 lg:w-full text-center">
+                            <thead class="md:w-1/2 lg:w-full">
+                              <tr>
+                                <th class="border w-1/4 px-4 py-2 text-center">รายการ</th>
+                                <th class="border w-1/2 px-4 py-2 text-center">ค่าหน่วยบริการ</th>
+                                <th class="border w-1/4 px-4 py-2 text-center">ราคารวม</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td class="border px-4 py-2">ค่าเช่าห้อง</td>
+                                <td class="border px-4 py-2">{{rent_room}}</td>
+                                <td class="border px-4 py-2">{{rent_room}}</td>
+                              </tr>
+                              <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">ค่าน้ำประปา</td>
+                                <td class="border px-4 py-2">({{this_wt}} - {{bf_wt}}) * 8</td>
+                                <td class="border px-4 py-2">{{water}}</td>
+                              </tr>
+                              <tr>
+                                <td class="border px-4 py-2">ค่าไฟ</td>
+                                <td class="border px-4 py-2">({{this_mt}} - {{bf_mt}}) * 6</td>
+                                <td class="border px-4 py-2">{{electric}}</td>
+                              </tr>
+                              <tr>
+                                <td class="border-b bg-white text-black  py-2">รวมทั้งสิ้น</td>
+                                <td class="border-b bg-white text-black  py-2"></td>
+                                <td class="border-b bg-white text-black  py-2">{{total}} บาท</td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <!-- <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                    <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b text-lg">
+                        ใบแจ้งหนี้
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="font-light text-black justify-start">หมายเลขห้อง {{room}}</span>
+                        <span class="font-light text-black justify-end">วันที่ {{dateN}}</span>
+                    </div>
+                    <div class="p-3 flex justify-center text-center">
+                        <table class="table-responsive w-full rounded ">
+                            <thead>
+                              <tr class="item-center">
+                                <th class="border w-1/2 px-4 py-2 items-center ">รายการ</th>
+                                <th class="border w-1/2 px-4 py-2 items-center">ค่าหน่วยบริการ</th>
+                                <th class="border w-1/5 px-4 py-2">ราคารวม</th>
+                                
+                                
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border px-4 py-2">ค่าเช่าห้อง</td>
+                                    <td class="border px-4 py-2">{{rent_room}}</td>
+                                    <td class="border px-4 py-2">{{rent_room}}</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2">ค่าน้ำประปา</td>
+                                    <td class="border px-4 py-2">({{this_wt}} - {{bf_wt}})*8</td>
+                                    <td class="border px-4 py-2">{{water}}</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td class="border px-4 py-2">ค่าไฟ</td>
+                                    <td class="border px-4 py-2">({{this_mt}} - {{bf_mt}})*6</td>
+                                    <td class="border px-4 py-2">{{electric}}</td>
+                                    
+
+                                </tr>
+                                <tr>
+                                    <td class="border-b bg-white text-black  py-2">รวมทั้งสิ้น</td>
+                                    <td class="border-b bg-white text-black  py-2"></td>
+                                    <td class="border-b bg-white text-black  py-2">{{total}} บาท</td>
+                                  </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div> -->
+            </div>
+            <!--/Grid Form-->
+        </div>
+    </div>
+</div>
+
+<script src="./static/main.js"></script>
+</body>
+        
+</html>

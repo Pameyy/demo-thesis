@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,admin templates, admin template, admin dashboard, free tailwind templates, tailwind example">
+    <!-- Css -->
+    <link rel="stylesheet" href="./static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" >
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
+    
+    <title>Home</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+    .font-family{
+        font-family: 'Prompt', sans-serif;
+    }
+    
+</style>
+
+<body class="font-family">
+<!--Container -->
+<div class="mx-auto bg-grey-400">
+<!--Screen-->
+<div class="min-h-screen flex flex-col">
+    <!--Header Section Starts Here-->
+    <header class="bg-nav">
+        <div class="flex justify-between">
+            <div class="p-1 mx-3 inline-flex items-center">
+                <i class="fas fa-bars" onclick="sidebarToggle()"></i>
+                <h1 class="text-white p-2">ระบบบริหารจัดการค่าน้ำ ค่าไฟ หอพักกมลวรรณ</h1>
+            </div>
+            <div class="p-1 flex flex-row items-center">
+                
+
+
+                <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png" alt="">
+                <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block">{{name_user}}</a>
+                <div id="ProfileDropDown" class="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r">
+                    <ul class="list-reset">
+                      <li><a href="{{url_for('login')}}" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--/Header-->
+
+    <div class="flex flex-1 font-family ">
+        <!--Sidebar-->
+        <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
+
+            <ul class="list-reset flex flex-col">
+                <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
+                    <a href="{{url_for('start_index')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                        <i class="fas fa-tachometer-alt float-left mx-2"></i>
+                        หน้าหลัก
+                        <span><i class="fas fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <a href="{{url_for('upload_for_ocr')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                        <i class="fab fa-wpforms float-left mx-2"></i>
+                        เก็บข้อมูลมิเตอร์
+                        <span><i class="fa fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <a href="{{url_for('queryforcalculate')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                        <i class="fas fa-grip-horizontal float-left mx-2"></i>
+                        สร้างใบแจ้งหนี้
+                        <span><i class="fa fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <a href="{{url_for('qeuryforshow')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                        <i class="fas fa-table float-left mx-2"></i>
+                        สรุปค่าใช้จ่าย
+                        <span><i class="fa fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <a href="{{url_for('users')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                        <i class="fab fa-uikit float-left mx-2"></i>
+                        จัดการผู้ใช้งาน
+                        <span><i class="fa fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <a href="{{url_for('units_setting')}}"
+                       class="hover:font-normal text-sm text-nav-item no-underline">
+                       <i class="fas fa-cogs"></i></i>
+                        ตั้งค่าหน่วยบริการ
+                        <span><i class="fa fa-angle-right float-right"></i></span>
+                    </a>
+                </li>
+                
+                        <li class="border-t border-light-border w-full h-full px-2 py-3">
+                            <a href="{{url_for('login')}}"
+                               class="mx-4  hover:font-normal text-sm text-nav-item no-underline">
+                                ออกจากระบบ
+                                <span><i class="fa fa-angle-right float-right"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </aside>
+            <!--/Sidebar-->
+            <main class="bg-white-500 flex-1 p-3 overflow-hidden">
+                <!--Grid Form-->
+
+                <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                    <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                        <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b text-lg ">
+                            สรุปค่าใช้จ่ายรายปี รายห้อง
+                        </div>
+                        <div class="p-3">
+
+                            <form action="{{url_for('report_room')}}" method="POST" class="w-full">
+                                <div class="flex flex-wrap -mx-3 mb-6">
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                        <label class="block uppercase tracking-wide text-gray-700 text-lg font-light mb-1"
+                                               for="room">
+                                            ห้อง
+                                        </label>
+                                        <select name="room" id="room" class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
+                                            {%for i in data%}
+                                              <option value="{{i[0]}}">{{i[1]}}</option>
+                                              {%endfor%}}
+                                        </select>
+                                    </div>
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                        <label class="block uppercase tracking-wide text-gray-700 text-lg font-light mb-1"
+                                               for="year">
+                                            ปี
+                                        </label>
+                                        <select name="year" id="year" class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
+                                            <option value="2563">2563</option>
+                                            <option value="2564">2564</option>
+                                            <option value="2565">2565</option>
+                                            <option value="2566">2566</option>
+                                            <option value="2567">2567</option>
+                                            <option value="2568">2568</option>
+                                            <option value="2568">2568</option>
+                                            <option value="2569">2569</option>
+                                            <option value="2570">2570</option>
+                                        </select>
+                                    </div>
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                        <input type="submit" value="ค้นหา"
+                                                class="bg-blue-500 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded-full ">
+                                    </div>
+                                </div>  
+                            </form>
+                            <div>
+
+<!--Grid Form-->
+
+                    <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                        <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                            
+                            <div class="p-3">
+                                <table class="table-responsive w-full rounded text-center">
+                                    <thead>
+                                      <tr>
+                                        <th class="border w-1/7 px-4 py-2">เดือน</th>
+                                        <th class="border w-1/4 px-4 py-2">ปี</th>
+                                        <th class="border w-1/4 px-4 py-2">ค่าน้ำ</th>
+                                        <th class="border w-1/4 px-4 py-2">ค่าไฟฟ้า</th>
+                                        <th class="border w-1/4 px-4 py-2">รวมรายเดือน</th>
+                                        
+                                        
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        {%for data in query %}
+                                        <tr>
+                                            <td>{{data[0]}}</td>
+                                            <td>{{data[1]}}</td>
+                                            <td>{{data[2]}}</td>
+                                            <td>{{data[3]}}</td>
+                                            <td>{{data[4]}}</td>
+                                            
+                                        </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                    <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                        <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b text-lg ">
+                            สรุปค่าใช้จ่ายรายเดือน รายห้อง
+                        </div>
+                        <div class="p-3">
+
+                            <form action="{{url_for('report_month')}}" method="POST" class="w-full">
+                                <div class="flex flex-wrap -mx-3 mb-6">
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                        <label class="block uppercase tracking-wide text-gray-700 text-lg font-light mb-1"
+                                               for="month">
+                                            เดือน
+                                        </label>
+                                        <select name="month" id="month" class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
+                                                    <option value="1">มกราคม</option>
+                                                    <option value="2">กุมภาพันธ์</option>
+                                                    <option value="3">มีนาคม</option>
+                                                    <option value="4">เมษายน</option>
+                                                    <option value="5">พฤษภาคม</option>
+                                                    <option value="6">มิถุนายน</option>
+                                                    <option value="7">กรกฎาคม</option>
+                                                    <option value="8">สิงหาคม</option>
+                                                    <option value="9">กันยายน</option>
+                                                    <option value="10">ตุลาคม</option>
+                                                    <option value="11">พฤศจิกายน</option>
+                                                    <option value="12">ธันวาคม</option>
+                                                
+                                        </select>
+                                    </div>
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                        <label class="block uppercase tracking-wide text-gray-700 text-lg font-light mb-1"
+                                               for="year">
+                                            ปี
+                                        </label>
+                                        <select name="year" id="year" class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
+                                            <option value="2563">2563</option>
+                                            <option value="2564">2564</option>
+                                            <option value="2565">2565</option>
+                                            <option value="2566">2566</option>
+                                            <option value="2567">2567</option>
+                                            <option value="2568">2568</option>
+                                            <option value="2568">2568</option>
+                                            <option value="2569">2569</option>
+                                            <option value="2570">2570</option>
+                                        </select>
+                                    </div>
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 ">
+                                        <input type="submit" value="ค้นหา"
+                                                class="bg-blue-500 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded-full ">
+                                    </div>
+                                </div>  
+                            </form>
+                            <div>
+
+<!--Grid Form-->
+
+                    <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                        <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                            
+                            <div class="p-3">
+                                <table class="table-responsive w-full rounded text-center">
+                                    <thead>
+                                      <tr>
+                                        <th class="border w-1/7 px-4 py-2">ห้อง</th>
+                                        <th class="border w-1/4 px-4 py-2">เดือน</th>
+                                        <th class="border w-1/4 px-4 py-2">ค่าน้ำ</th>
+                                        <th class="border w-1/4 px-4 py-2">ค่าไฟ</th>
+                                        <th class="border w-1/4 px-4 py-2">รวมรายเดือน</th>
+                                        
+                                        
+                                        
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        {%for data in quert_month %}
+                                        <tr>
+                                            <td>{{data[0]}}</td>
+                                            <td>{{data[1]}}</td>
+                                            <td>{{data[2]}}</td>
+                                            <td>{{data[3]}}</td>
+                                            <td>{{data[4]}}</td>
+                                            
+                                        </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </main>
+        </div>
+    </div>
+</div>
+
+
+<script src="./static/main.js"></script>
+</body>
+</html>
